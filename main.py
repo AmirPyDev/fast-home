@@ -1,9 +1,12 @@
 
 """ BaseModel is validating the data being put in 
     the Method which is class <something>()
- """
+"""
 from fastapi import FastAPI
 from pydantic import BaseModel 
+
+from tortoise.models import Model
+from tortoise import fields
 
 import requests 
 
@@ -11,6 +14,12 @@ app = FastAPI()
 
 
 db = []
+
+
+class City(Model):
+    id = fields.IntField(pk=True)
+    name = fields.CharField(50, unique=True)
+    timmezone = fields.CharField(50)
 
 
 class City(BaseModel):
